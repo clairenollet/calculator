@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <!--CSS-->
+  <style type="text/css">
+  	body {
+        background-color: #476088;
+  	    color: #F8EEEE;
+  		font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+  	}
+  	.header {
+        text-align: left;
+        margin: 30px 30px 30px 30px;
+    }
+    #card {
+        background-color: #F8EEEE;
+        max-width: 290px;
+        margin: 10px 30px 10px 30px;
+        padding: 30px;
+        border-radius: 0.2em;
+    }
+    #screen {
+        width: auto;
+        height: 50px;
+        background-color: #ffffff;
+  	    color: #000000;
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-bottom: 20px;
+    }
+    #button-grid {
+        display: grid;
+        grid-template-columns:  repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 10px;
+        grid-auto-flow: row;
+    }
+    button {
+        width: 50px;
+        height: 50px;
+        background-color: #476088;
+  	    color: #F8EEEE;
+        border-radius: 0.2em;
+        font-weight: 600;
+        font-size: 1.3em;
+        text-align: center;
+        border-style: none;
+        cursor: pointer;
+    }
+    button:hover {
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .substract {
+        grid-row: 3 / 3;
+        grid-column: 2 / 2;
+    }
+    .add {
+        grid-row: 3 / 3;
+        grid-column: 3 / 3;
+    }
+    .divide {
+        grid-row: 3 / 3;
+        grid-column: 4 / 4;
+    }
+    .multiply {
+        grid-row: 3 / 3;
+        grid-column: 5 / 5;
+    }
+    .equal {
+        grid-row: 4 / 4;
+        grid-column: 4 / 4;
+    }
+    .cancel {
+        grid-row: 4 / 4;
+        grid-column: 5 / 5;
+    }
+
+  </style>
+</head>
+<body>
+<header class="header">
+  <h1>Simple calculator</h1>
+</header>
+<main id="card">
+    <section id="screen"></section>
+    <section id="button-grid">
+    <button class="zero">0</button>
+    <button class="one">1</button>
+    <button class="two">2</button>
+    <button class="three">3</button>
+    <button class="four">4</button>
+    <button class="five">5</button>
+    <button class="six">6</button>
+    <button class="seven">7</button>
+    <button class="eight">8</button>
+    <button class="nine">9</button>
+    <button class="substract">–</button>
+    <button class="add">+</button>
+    <button class="divide">/</button>
+    <button class="multiply">x</button>
+    <button class="equal">=</button>
+    <button class="cancel">C</button>
+</section>
+</main>
+<!--JavaScript-->
+<script type="text/javascript">
+</script>
+</body>
+</html>
