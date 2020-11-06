@@ -48,27 +48,27 @@ button {
 button:hover {
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.substract {
+#substract {
     grid-row: 3 / 3;
     grid-column: 2 / 2;
 }
-.add {
+#add {
     grid-row: 3 / 3;
     grid-column: 3 / 3;
 }
-.divide {
+#divide {
     grid-row: 3 / 3;
     grid-column: 4 / 4;
 }
-.multiply {
+#multiply {
     grid-row: 3 / 3;
     grid-column: 5 / 5;
 }
-.equal {
+#equal {
     grid-row: 4 / 4;
     grid-column: 4 / 4;
 }
-.cancel {
+#cancel {
     grid-row: 4 / 4;
     grid-column: 5 / 5;
 }
