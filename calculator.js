@@ -57,56 +57,6 @@ function numberSelected(number) {
     document.getElementById('screen').innerHTML = (data);
 };
 
-// clic sur 0
-function zeroSelected() {
-  numberSelected(0);
-};
-
-// clic sur 1
-function oneSelected() {
-  numberSelected(1);
-};
-
-// clic sur 2
-function twoSelected() {
-  numberSelected(2);
-};
-
-// clic sur 3
-function threeSelected() {
-  numberSelected(3);
-};
-
-// clic sur 4
-function fourSelected() {
-  numberSelected(4);
-};
-
-// clic sur 5
-function fiveSelected() {
-  numberSelected(5);
-};
-
-// clic sur 6
-function sixSelected() {
-  numberSelected(6);
-};
-
-// clic sur 7
-function sevenSelected() {
-  numberSelected(7);
-};
-
-// clic sur 8
-function eightSelected() {
-  numberSelected(8);
-};
-
-// clic sur 9
-function nineSelected() {
-  numberSelected(9);
-};
-
 // clic sur decimal
 function decimalSelected() {
   numberSelected('.');
