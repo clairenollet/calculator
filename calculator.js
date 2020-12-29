@@ -16,6 +16,8 @@
 
 // 1. On définit la variable data
 let data = [];
+let res = null;
+let decimal = false;
 
 // 2. Si Cancel est sélectionné, data reprend sa valeur d'origine
 function cancelSelected() {
@@ -25,22 +27,75 @@ function cancelSelected() {
 
 // 5. Si Equal est sélectionné, on affiche le résultat
 function equalSelected() {
-  let result = data.join('');
-  document.getElementById('screen').innerHTML = (result);
+  let nb1 = data[0]
+  let nb2 = data[2]
+  let op = data[1]
+  if (op === '+') {
+    res = nb1 + nb2
+  }
+  else if (op === '-') {
+    res = nb1 - nb2
+  }  
+  else if (op === '*') {
+    res = nb1 * nb2
+  }  
+  else if (op === '/') {
+    res = nb1 / nb2
+  }
+  document.getElementById('screen').innerHTML = (res);
+  data = []  
+  data.push(res)
+  // let result = data.join('');
   // document.getElementById('screen').innerHTML = (eval(result));
 };
 
 // 3. Si un numéro est sélectionné, on regarde si le dernier element de data est un nombre ou un opérateur :
 function numberSelected(number) {
 // si c'est un nombre on l'ajoute à la suite
-  if (typeof data[data.length -1] == "number") {
-    data[data.length -1] = data[data.length -1]*10 + number;
+
+  if (number === '.') {
+    decimal = true
+    data[data.length -1] = data[data.length -1] + .0;
+    tmp = data[data.length -1].toString() + '.';
+    // tmp = str(data[data.length -1])+'.';
+  }
+  else if (typeof data[data.length -1] == "number") {
+    if (decimal) {
+      // on transforme le dernier item de data en string
+      strData = data[data.length -1].toString();
+      // on localise la virgule
+      decimalLocation = strData.indexOf('.');
+      if (decimalLocation === -1){
+        decimaler = 10**-1
+      }
+      // on récupère le nombre de chiffres après la virgule
+      else {
+        i = strData.length - decimalLocation;
+        console.log(i); 
+        console.log(strData.length);
+        console.log(decimalLocation);
+        console.log(data[data.length -1]);
+      // ce résultat est le nb de 0 apres la virgule du multiplicateur
+        decimaler = 10**-i
+      }
+  
+      // on prend le multiplicateur et on le * avec number
+      data[data.length -1] = data[data.length -1] + number*decimaler;
+      tmp = data[data.length -1];
+
+    }
+    else {
+      data[data.length -1] = data[data.length -1]*10 + number;
+      tmp = data[data.length -1];
+    }
   }
 // si c'est un opérateur on crée un nouvel item
-    else {
+  else {
      data.push(number);
+     decimal = false;
+     tmp = number;
     };
-  document.getElementById('screen').innerHTML = (data);
+  document.getElementById('screen').innerHTML = (tmp);
 };
 
 // clic sur decimal
@@ -62,7 +117,6 @@ function operatorSelected(operator) {
       else {
         data.push(operator);
       };
-      document.getElementById('screen').innerHTML = (data);
   };
 
   function addSelected() {
