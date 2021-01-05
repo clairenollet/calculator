@@ -4,11 +4,15 @@
 let data = [];
 let res = null;
 let decimal = false;
+let counter = 0;
 
 // 2. Si Cancel est sélectionné, data reprend sa valeur d'origine
 function cancelSelected() {
   data = []
   document.getElementById('screen').innerHTML = (data);
+  counter = 0;
+  counter_zero = 0;
+  decimal = false;
 };
 
 // 3. Si Equal est sélectionné, on affiche le résultat
@@ -24,16 +28,17 @@ function equalSelected() {
   }  
   else if (op === '*') {
     res = nb1 * nb2
-  }  
+  } 
   else if (op === '/') {
     res = nb1 / nb2
   }
   document.getElementById('screen').innerHTML = (res);
-  data = []  
-  data.push(res)
-  // let result = data.join('');
-  // document.getElementById('screen').innerHTML = (eval(result));
-};
+  data = [];
+  data.push(res);
+  counter = 0;
+  counter_zero = 0;
+  decimal = false;
+}
 
 // 4. Si un numéro ou la virgule est sélectionné, on regarde si le dernier element de data est un nombre ou un opérateur :
 function numberSelected(number) {
@@ -41,43 +46,47 @@ function numberSelected(number) {
   if (number === '.') {
     decimal = true
     data[data.length -1] = data[data.length -1] + .0;
-    tmp = data[data.length -1].toString() + '.';
+    str = data[data.length -1].toString() + '.';
   }
   // si le denier item est un nombre, on y ajoute notre numéro
   else if (typeof data[data.length -1] == "number") {
     // 1. si c'est un nombre décimal
     if (decimal) {
-      // on transforme le dernier item de data en string
-      strData = data[data.length -1].toString();
-      // on localise la virgule
-      decimalLocation = strData.indexOf('.');
-      // cas particulier
-      if (decimalLocation === -1){
-        decimaler = 10**-1
-      }
-      // dans les autres cas, on récupère le nombre de chiffres après la virgule dans le dernier item de data
-      else {
-        i = strData.length - decimalLocation;
-      // ce résultat est le nombre de 0 qu'on met après la virgule du multiplicateur
-        decimaler = 10**-i
-      }
+      // on ajoute un point au compteur
+      counter += 1
+      // on maj le nombre de 0 qu'on met après la virgule du multiplicateur
+      decimaler = 10**-counter
       // on prend le multiplicateur et on multiplie number avec
       data[data.length -1] = data[data.length -1] + number*decimaler;
-      tmp = data[data.length -1];
+      str = data[data.length -1].toString();
+      if ((number == "0") && (counter == 1 || counter == counter_zero+1)) {
+        str += '.';
+      }
+      if (number == 0) {
+        counter_zero += 1
+        str += '0'.repeat(counter_zero);
+      }
+      else {
+        counter_zero = 0
+      }      
+
+
     }
     // 2. si ce n'est pas un nombre décimal
     else {
       data[data.length -1] = data[data.length -1]*10 + number;
-      tmp = data[data.length -1];
+      str = data[data.length -1];
     }
   }
 // si le denier item est un opérateur, on crée un nouvel item
   else {
-     data.push(number);
-     decimal = false;
-     tmp = number;
+    data.push(number);
+    decimal = false;
+    str = number;
+    counter = 0;
+    counter_zero = 0;
     };
-  document.getElementById('screen').innerHTML = (tmp);
+  document.getElementById('screen').innerHTML = (str);
 };
 
 // 4. Au clic sur un opérateur : 
@@ -86,14 +95,18 @@ function operatorSelected(operator) {
     if (data.length === 0) {
       window.alert('Operation cannot start with an operator');
     }
-       // si l'utilisateur sélectionne deux fois de suite un operateur on met une alerte
-      else if (typeof data[data.length -1] == 'string') {
+    // si l'utilisateur sélectionne deux fois de suite un operateur on met une alerte
+    else if (typeof data[data.length -1] == 'string') {
         window.alert('Operator cannot be selected after an operator');
       }
-       // on crée un nouvel item
-      else {
-        data.push(operator);
-      };
+    else {
+      if (data.length === 3) {
+        equalSelected()
+      }
+      // on crée un nouvel item
+      data.push(operator);
+    }
+
   };
 
   function addSelected() {
