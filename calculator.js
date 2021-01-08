@@ -15,23 +15,34 @@ function cancelSelected() {
   decimal = false;
 };
 
+function mysqrt(nb) {
+  let i = 0;
+  while (i * i < nb) {
+    i += 1;
+  }
+  return i;
+}
+
 // 3. Si Equal est sélectionné, on affiche le résultat
 function equalSelected() {
-  let nb1 = data[0]
-  let nb2 = data[2]
-  let op = data[1]
-  if (op === '+') {
-    res = nb1 + nb2
-  }
-  else if (op === '-') {
-    res = nb1 - nb2
-  }  
-  else if (op === '*') {
-    res = nb1 * nb2
-  } 
-  else if (op === '/') {
-    res = nb1 / nb2
-  }
+    let nb1 = data[0]
+    let nb2 = data[2]
+    let op = data[1]
+    if (op === 'sqrt') {
+      res = mysqrt(nb1)
+    }
+    else if (op === '+') {
+      res = nb1 + nb2
+    }
+    else if (op === '-') {
+      res = nb1 - nb2
+    }  
+    else if (op === '*') {
+      res = nb1 * nb2
+    } 
+    else if (op === '/') {
+      res = nb1 / nb2
+    }
   document.getElementById('screen').innerHTML = (res);
   data = [];
   data.push(res);
@@ -123,4 +134,8 @@ function operatorSelected(operator) {
 
   function divideSelected() {
     operatorSelected('/');
+  };
+
+  function sqrtSelected() {
+    operatorSelected('sqrt');
   };
