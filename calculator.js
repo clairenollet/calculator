@@ -2,7 +2,7 @@
 
 // 1. On définit les variables générales
 let data = [];
-let res = null;
+let result = null;
 let decimal = false;
 let counter = 0;
 
@@ -27,25 +27,25 @@ function mysqrt(nb) {
 function equalSelected() {
     let nb1 = data[0]
     let nb2 = data[2]
-    let op = data[1]
-    if (op === 'sqrt') {
-      res = mysqrt(nb1)
+    let op  = data[1]
+    if (op  === 'sqrt') {
+      result = mysqrt(nb1)
     }
-    else if (op === '+') {
-      res = nb1 + nb2
+    else if (op  === '+') {
+      result = nb1 + nb2
     }
-    else if (op === '-') {
-      res = nb1 - nb2
+    else if (op  === '-') {
+      result = nb1 - nb2
     }  
-    else if (op === '*') {
-      res = nb1 * nb2
+    else if (op  === '*') {
+      result = nb1 * nb2
     } 
-    else if (op === '/') {
-      res = nb1 / nb2
+    else if (op  === '/') {
+      result = nb1 / nb2
     }
-  document.getElementById('screen').innerHTML = (res);
+  document.getElementById('screen').innerHTML = (result);
   data = [];
-  data.push(res);
+  data.push(result);
   counter = 0;
   counter_zero = 0;
   decimal = false;
