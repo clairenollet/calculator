@@ -8,7 +8,7 @@ let counter = 0;
 
 // 2. Si Cancel est sélectionné, data reprend sa valeur d'origine
 function cancelSelected() {
-  data = []
+  data = [];
   document.getElementById('screen').innerHTML = (data);
   counter = 0;
   counter_zero = 0;
@@ -25,23 +25,23 @@ function mysqrt(nb) {
 
 // 3. Si Equal est sélectionné, on affiche le résultat
 function equalSelected() {
-    let nb1 = data[0]
-    let nb2 = data[2]
-    let op  = data[1]
+    let nb1 = data[0];
+    let nb2 = data[2];
+    let op  = data[1];
     if (op  === 'sqrt') {
-      result = mysqrt(nb1)
+      result = mysqrt(nb1);
     }
     else if (op  === '+') {
-      result = nb1 + nb2
+      result = nb1 + nb2;
     }
     else if (op  === '-') {
-      result = nb1 - nb2
+      result = nb1 - nb2;
     }  
     else if (op  === '*') {
-      result = nb1 * nb2
+      result = nb1 * nb2;
     } 
     else if (op  === '/') {
-      result = nb1 / nb2
+      result = nb1 / nb2;
     }
   document.getElementById('screen').innerHTML = (result);
   data = [];
@@ -55,7 +55,7 @@ function equalSelected() {
 function numberSelected(number) {
 // si on a sélectionné une virgule, on l'ajoute au dernier item
   if (number === '.') {
-    decimal = true
+    decimal = true;
     data[data.length -1] = data[data.length -1] + .0;
     str = data[data.length -1].toString() + '.';
   }
@@ -64,9 +64,9 @@ function numberSelected(number) {
     // 1. si c'est un nombre décimal
     if (decimal) {
       // on ajoute un point au compteur
-      counter += 1
+      counter += 1;
       // on maj le nombre de 0 qu'on met après la virgule du multiplicateur
-      decimaler = 10**-counter
+      decimaler = 10**-counter;
       // on prend le multiplicateur et on multiplie number avec
       data[data.length -1] = data[data.length -1] + number*decimaler;
       str = data[data.length -1].toString();
@@ -74,11 +74,11 @@ function numberSelected(number) {
         str += '.';
       }
       if (number == 0) {
-        counter_zero += 1
+        counter_zero += 1;
         str += '0'.repeat(counter_zero);
       }
       else {
-        counter_zero = 0
+        counter_zero = 0;
       }      
 
 
@@ -112,7 +112,7 @@ function operatorSelected(operator) {
       }
     else {
       if (data.length === 3) {
-        equalSelected()
+        equalSelected();
       }
       // on crée un nouvel item
       data.push(operator);
