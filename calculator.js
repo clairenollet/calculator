@@ -119,23 +119,3 @@ function operatorSelected(operator) {
     }
 
   };
-
-  function addSelected() {
-    operatorSelected('+');
-  };
-
-  function substractSelected() {
-    operatorSelected('-');
-  };
-
-  function multiplySelected() {
-    operatorSelected('*');
-  };
-
-  function divideSelected() {
-    operatorSelected('/');
-  };
-
-  function sqrtSelected() {
-    operatorSelected('sqrt');
-  };
